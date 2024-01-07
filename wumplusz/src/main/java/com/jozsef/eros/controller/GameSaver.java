@@ -3,6 +3,9 @@ package com.jozsef.eros.controller;
 import com.jozsef.eros.controller.DataBaseManager;
 import com.jozsef.eros.controller.FileManager;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class GameSaver {
@@ -63,6 +66,16 @@ public class GameSaver {
                 break;
             default:
                 System.out.println("An unknown error has occurred.");
+        }
+    }
+    public void savePlayer(String playerName) {
+        try (Connection conn = new DataBaseManager().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO players (name) VALUES (?);")) {
+            pstmt.setString(1, playerName);
+            pstmt.executeUpdate();
+            System.out.println("Player saved to database.");
+        } catch (SQLException e) {
+            System.out.println("SQL Exception while inserting player: " + e.getMessage());
         }
     }
 }

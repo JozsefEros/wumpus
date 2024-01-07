@@ -1,12 +1,10 @@
 package com.jozsef.eros.model;
 
-import com.jozsef.eros.NewGameLoader;
-
 import java.util.Random;
 
 public class InnerWallGenerator {
     private static char[][] wall;
-    static int wallX, wallY;
+    private static int wallX, wallY;
 
     public InnerWallGenerator(int rows, int cols) {
         wall = new char[rows][cols];
@@ -17,7 +15,7 @@ public class InnerWallGenerator {
     }
 
     private static void setWallPosition() {
-        int selfSize = (int) (wall.length * wall.length * 0.085);
+        int selfSize = (int) (wall.length * wall.length * 0.2);
         do {
             for (int i = 0; i <= selfSize; i++) {
                 Random random = new Random();
@@ -38,10 +36,10 @@ public class InnerWallGenerator {
                 }
             }
         } while (
-                (wallX == Player.getPlayerPosX() && wallY == Player.getPlayerPosY()) ||
-                        (wallX == Gold.getGoldPosX() && wallY == Gold.getGoldPosY()) ||
-                        (wallX == WumpusGenerator.getWumpus1X() && wallY == WumpusGenerator.getWumpus1Y()) ||
-                        (wallX == WumpusGenerator.getWumpus2X() && wallY == WumpusGenerator.getWumpus2Y()) ||
+                (wallX == Player.getPlayerInitPosX() && wallY == Player.getPlayerInitPosY()) &&
+                        (wallX == Gold.getGoldPosX() && wallY == Gold.getGoldPosY()) &&
+                        (wallX == WumpusGenerator.getWumpus1X() && wallY == WumpusGenerator.getWumpus1Y()) &&
+                        (wallX == WumpusGenerator.getWumpus2X() && wallY == WumpusGenerator.getWumpus2Y()) &&
                         (wallX == WumpusGenerator.getWumpus3X() && wallY == WumpusGenerator.getWumpus3Y())
         );
     }

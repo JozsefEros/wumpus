@@ -4,8 +4,8 @@ import java.util.Random;
 import com.jozsef.eros.NewGameLoader;
 
 public class Gold {
-    static int goldX;
-    static int goldY;
+    private static int goldX;
+    private static int goldY;
     // Arany generálása
     public void GoldPosition() {
         setGoldPosition();
@@ -18,6 +18,10 @@ public class Gold {
         int goldY = random.nextInt(max - min) + min;
         this.goldX = goldX;
         this.goldY = goldY;
+    }
+    public static void resetGoldPosition() {
+        goldX = '\u0000';
+        goldY = '\u0000';
     }
     public static int getGoldPosX() {
         return goldX;

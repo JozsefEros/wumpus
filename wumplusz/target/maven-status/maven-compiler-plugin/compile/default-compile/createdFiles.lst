@@ -1,4 +1,5 @@
 com\jozsef\eros\model\PlayerInfo.class
+com\jozsef\eros\controller\GameSaver.class
 com\jozsef\eros\model\Player.class
 com\jozsef\eros\Menu.class
 com\jozsef\eros\controller\FileManager.class
@@ -6,10 +7,10 @@ com\jozsef\eros\model\Gold.class
 com\jozsef\eros\model\Wumpus.class
 com\jozsef\eros\model\WumpusGenerator.class
 com\jozsef\eros\model\InnerWallGenerator.class
-com\jozsef\eros\GameLoader.class
 com\jozsef\eros\GameBoardGenerator.class
 com\jozsef\eros\controller\DataBaseManager.class
 com\jozsef\eros\GameManager.class
 com\jozsef\eros\NewGameLoader.class
+com\jozsef\eros\controller\CheckStatus.class
 com\jozsef\eros\controller\PlayerActions.class
-com\jozsef\eros\GameSaver.class
+com\jozsef\eros\controller\GameLoader.class

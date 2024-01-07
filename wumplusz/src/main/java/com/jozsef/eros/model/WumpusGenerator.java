@@ -85,4 +85,16 @@ public class WumpusGenerator {
     public static int getWumpus3Y() {
         return wumpus3Y;
     }
+    public static void deleteWumpus(int x, int y) {
+        if (wumpus1X == x && wumpus1Y == y) {
+            wumpus1X = 0;
+            wumpus1Y = 0;
+        } else if (wumpus2X == x && wumpus2Y == y) {
+            wumpus2X = 0;
+            wumpus2Y = 0;
+        } else if (wumpus3X == x && wumpus3Y == y) {
+            wumpus3X = 0;
+            wumpus3Y = 0;
+        }
+    }
 }

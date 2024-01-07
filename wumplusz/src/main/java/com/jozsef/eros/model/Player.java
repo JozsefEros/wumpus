@@ -1,6 +1,8 @@
 package com.jozsef.eros.model;
 
 import com.jozsef.eros.NewGameLoader;
+import com.jozsef.eros.controller.GameSaver;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -10,9 +12,12 @@ public class Player {
     private String playerName;
     private static int playerPosX;
     private static int playerPosY;
+    private static int playerInitPosX;
+    private static int playerInitPosY;
     private static char direction = 'N';
     private static int numberOfArrows;
     private static int numberOfGolds = 0;
+    private static int killedWumpus = 0;
     private static int playerSteps = 0;
     // Konstruktor a játékos nevének bekérésére
     public void PlayerName() {
@@ -36,23 +41,32 @@ public class Player {
     public static void NumberOfGolds(int gold) {
         setNumberOfGolds(gold);
     }
+    public static void KilledWumpus(int wumpus) {
+        killedWumpus = wumpus;
+    }
     public static void PlayerSteps(int step) {
         setPlayerSteps(step);
     }
     // Metódus a játékos nevének beállítására
     private void setPlayerName() {
+        // Név bekérése
         Scanner kb = new Scanner(System.in);
         System.out.print("Kérem, adja meg a játékos nevét: ");
         playerName = kb.nextLine();
+        // Mentés adatbázisba
+        GameSaver saver = new GameSaver();
+        saver.savePlayer(playerName);
     }
     private static void setPlayerDirection(char dir) {
         direction = dir;
     }
     private static void setPlayerPosX(int posX){
         playerPosX = posX;
+
     }
     private static void setPlayerPosY(int posY){
         playerPosY = posY;
+
     }
     private static void setPlayerSteps(int step) {
         playerSteps = step;
@@ -65,6 +79,8 @@ public class Player {
         int playerPositionY = random.nextInt(max - min) + min;
         this.playerPosX = playerPositionX;
         this.playerPosY = playerPositionY;
+        playerInitPosX = playerPositionX;
+        playerInitPosY = playerPositionY;
     }
     public void setNumberOfArrows() {
         if (NewGameLoader.size <= 8){
@@ -89,6 +105,12 @@ public class Player {
     public static int getPlayerPosY() {
         return playerPosY;
     }
+    public static int getPlayerInitPosX() {
+        return playerInitPosX;
+    }
+    public static int getPlayerInitPosY() {
+        return playerInitPosY;
+    }
     public static char getPlayerDirection(){
         return direction;
     }
@@ -97,6 +119,9 @@ public class Player {
     }
     public static int getNumberOfGolds() {
         return numberOfGolds;
+    }
+    public static int getKilledWumpus() {
+        return killedWumpus;
     }
     public static int getPlayerSteps() {
         return playerSteps;
