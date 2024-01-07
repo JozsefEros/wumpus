@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="hu"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InnerWallGenerator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">wumplusz</a> &gt; <a href="index.source.html" class="el_package">com.jozsef.eros.model</a> &gt; <span class="el_source">InnerWallGenerator.java</span></div><h1>InnerWallGenerator.java</h1><pre class="source lang-java linenums">package com.jozsef.eros.model;
+
+import java.util.Random;
+
+public class InnerWallGenerator {
+    private static char[][] wall;
+    private static int wallX, wallY;
+
+<span class="nc" id="L9">    public InnerWallGenerator(int rows, int cols) {</span>
+<span class="nc" id="L10">        wall = new char[rows][cols];</span>
+<span class="nc" id="L11">    }</span>
+
+    public void WallPosition() {
+<span class="nc" id="L14">        setWallPosition();</span>
+<span class="nc" id="L15">    }</span>
+
+    private static void setWallPosition() {
+<span class="nc" id="L18">        int selfSize = (int) (wall.length * wall.length * 0.2);</span>
+        do {
+<span class="nc bnc" id="L20" title="All 2 branches missed.">            for (int i = 0; i &lt;= selfSize; i++) {</span>
+<span class="nc" id="L21">                Random random = new Random();</span>
+<span class="nc" id="L22">                int min = 1;</span>
+<span class="nc" id="L23">                int max = wall.length - 2;</span>
+<span class="nc" id="L24">                int wallPosX = random.nextInt(max - min) + min;</span>
+<span class="nc" id="L25">                int wallPosY = random.nextInt(max - min) + min;</span>
+<span class="nc" id="L26">                wallX = wallPosX;</span>
+<span class="nc" id="L27">                wallY = wallPosY;</span>
+<span class="nc" id="L28">                Random rnd = new Random();</span>
+<span class="nc" id="L29">                int minR = 0;</span>
+<span class="nc" id="L30">                int maxR = 100;</span>
+<span class="nc" id="L31">                int result = rnd.nextInt(maxR - minR + 1) + minR;</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">                if (result &lt;= 50) {</span>
+<span class="nc" id="L33">                    wall[wallX][wallY] = 'W';</span>
+                } else {
+<span class="nc" id="L35">                    wall[wallX][wallY] = 'P';</span>
+                }
+            }
+<span class="nc" id="L38">        } while (</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">                (wallX == Player.getPlayerInitPosX() &amp;&amp; wallY == Player.getPlayerInitPosY()) &amp;&amp;</span>
+<span class="nc bnc" id="L40" title="All 4 branches missed.">                        (wallX == Gold.getGoldPosX() &amp;&amp; wallY == Gold.getGoldPosY()) &amp;&amp;</span>
+<span class="nc bnc" id="L41" title="All 4 branches missed.">                        (wallX == WumpusGenerator.getWumpus1X() &amp;&amp; wallY == WumpusGenerator.getWumpus1Y()) &amp;&amp;</span>
+<span class="nc bnc" id="L42" title="All 4 branches missed.">                        (wallX == WumpusGenerator.getWumpus2X() &amp;&amp; wallY == WumpusGenerator.getWumpus2Y()) &amp;&amp;</span>
+<span class="nc bnc" id="L43" title="All 4 branches missed.">                        (wallX == WumpusGenerator.getWumpus3X() &amp;&amp; wallY == WumpusGenerator.getWumpus3Y())</span>
+        );
+<span class="nc" id="L45">    }</span>
+
+    public static char[][] getWall() {
+<span class="nc" id="L48">        return wall;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

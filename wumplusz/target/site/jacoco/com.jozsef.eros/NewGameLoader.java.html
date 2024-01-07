@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="hu"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NewGameLoader.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">wumplusz</a> &gt; <a href="index.source.html" class="el_package">com.jozsef.eros</a> &gt; <span class="el_source">NewGameLoader.java</span></div><h1>NewGameLoader.java</h1><pre class="source lang-java linenums">package com.jozsef.eros;
+
+import com.jozsef.eros.controller.PlayerActions;
+import com.jozsef.eros.model.*;
+import com.jozsef.eros.view.GameBoardGenerator;
+
+import java.util.Scanner;
+
+<span class="nc" id="L9">public class NewGameLoader {</span>
+
+    public static int size;
+    private static char exit;
+<span class="nc" id="L13">    private static int roomMinSize = 6;</span>
+<span class="nc" id="L14">    private static int roomMaxSize = 20;</span>
+    public static void setExit(char code){
+<span class="nc" id="L16">        exit = code;</span>
+<span class="nc" id="L17">    }</span>
+
+    public static void showNewGameHeader() {
+<span class="nc" id="L20">        System.out.println(&quot;***********************************&quot;);</span>
+<span class="nc" id="L21">        System.out.println(&quot;*         New Wumpus Game         *&quot;);</span>
+<span class="nc" id="L22">        System.out.println(&quot;***********************************&quot;);</span>
+<span class="nc" id="L23">    }</span>
+
+    public static void SizeOfRoom() {
+<span class="nc" id="L26">        setSizeOfRoom();</span>
+<span class="nc" id="L27">    }</span>
+
+    private static void setSizeOfRoom() {
+<span class="nc bnc" id="L30" title="All 4 branches missed.">        while (size &lt; roomMinSize || size &gt; roomMaxSize) {</span>
+<span class="nc" id="L31">            System.out.println(&quot;Input the size of the playground (6 to 20): &quot;);</span>
+<span class="nc" id="L32">            Scanner sc = new Scanner(System.in);</span>
+<span class="nc" id="L33">            int roomSize = Integer.parseInt(sc.nextLine());</span>
+<span class="nc" id="L34">            size = roomSize;</span>
+<span class="nc" id="L35">        }</span>
+<span class="nc" id="L36">    }</span>
+    public static int getSizeOfRoom() {
+<span class="nc" id="L38">        return size;</span>
+    }
+    public void showGameBoard() {
+<span class="nc" id="L41">        Player player = new Player();</span>
+<span class="nc" id="L42">        player.PlayerName();</span>
+<span class="nc" id="L43">        player.PlayerPosition();</span>
+<span class="nc" id="L44">        player.setNumberOfArrows();</span>
+<span class="nc" id="L45">        Gold gold = new Gold();</span>
+<span class="nc" id="L46">        gold.GoldPosition();</span>
+<span class="nc" id="L47">        WumpusGenerator generator = new WumpusGenerator();</span>
+<span class="nc" id="L48">        generator.wumpusGenerator();</span>
+
+<span class="nc" id="L50">        InnerWallGenerator innerWall = new InnerWallGenerator(size, size);</span>
+<span class="nc" id="L51">        innerWall.WallPosition();</span>
+
+<span class="nc" id="L53">        Scanner kb = new Scanner(System.in);</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">        while (exit != 'Q' &amp;&amp; exit != 'P') {</span>
+<span class="nc" id="L55">            GameBoardGenerator board = new GameBoardGenerator(size, size);</span>
+<span class="nc" id="L56">            board.GameBoardDisplay();</span>
+
+<span class="nc" id="L58">            PlayerActions action = new PlayerActions();</span>
+<span class="nc" id="L59">            System.out.println(&quot;Where would you like to go next?&quot;);</span>
+<span class="nc" id="L60">            System.out.println(&quot;Choose an option.&quot;);</span>
+<span class="nc" id="L61">            System.out.println(&quot;W - Forward   | S - Back&quot;);</span>
+<span class="nc" id="L62">            System.out.println(&quot;A - Turn left | D - Turn right&quot;);</span>
+<span class="nc" id="L63">            System.out.println(&quot;          F - Fire\n&quot;);</span>
+<span class="nc" id="L64">            System.out.println(&quot;P - Save      | Q - Quit\n&quot;);</span>
+
+<span class="nc" id="L66">            PlayerInfo info = new PlayerInfo();</span>
+<span class="nc" id="L67">            info.setPlayerInfo();</span>
+<span class="nc" id="L68">            info.getPlayerInfo();</span>
+
+<span class="nc" id="L70">            char quitButton = kb.next().charAt(0);</span>
+<span class="nc bnc" id="L71" title="All 4 branches missed.">            if (quitButton == 'Q' || quitButton == 'q') {</span>
+<span class="nc" id="L72">                System.out.println(&quot;Are you sure you want to quit? (Y/N)&quot;);</span>
+<span class="nc" id="L73">                char confirm = kb.next().charAt(0);</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">                if (confirm == 'Y' || confirm == 'y') {</span>
+<span class="nc" id="L75">                    exit = 'Q';</span>
+                }
+<span class="nc" id="L77">            } else {</span>
+<span class="nc" id="L78">                action.setPlayerMove(quitButton);</span>
+            }
+<span class="nc" id="L80">        }</span>
+<span class="nc" id="L81">    }</span>
+
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

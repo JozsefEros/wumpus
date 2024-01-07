@@ -10,7 +10,11 @@ import java.sql.Statement;
 
 public class DataBaseManager {
 
-    private static final Logger logger = LoggerFactory.getLogger(DataBaseManager.class);
+    public static final Logger logger;
+
+    static {
+        logger = LoggerFactory.getLogger(DataBaseManager.class);
+    }
 
     /** The database connection. */
     private Connection connection;

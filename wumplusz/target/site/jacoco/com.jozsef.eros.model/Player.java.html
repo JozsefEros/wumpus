@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="hu"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Player.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">wumplusz</a> &gt; <a href="index.source.html" class="el_package">com.jozsef.eros.model</a> &gt; <span class="el_source">Player.java</span></div><h1>Player.java</h1><pre class="source lang-java linenums">package com.jozsef.eros.model;
+
+import com.jozsef.eros.NewGameLoader;
+import com.jozsef.eros.controller.GameSaver;
+
+import java.util.Random;
+import java.util.Scanner;
+
+
+<span class="nc" id="L10">public class Player {</span>
+    // properties
+    private String playerName;
+    private static int playerPosX;
+    private static int playerPosY;
+    private static int playerInitPosX;
+    private static int playerInitPosY;
+<span class="nc" id="L17">    private static char direction = 'N';</span>
+    private static int numberOfArrows;
+<span class="nc" id="L19">    private static int numberOfGolds = 0;</span>
+<span class="nc" id="L20">    private static int killedWumpus = 0;</span>
+<span class="nc" id="L21">    private static int playerSteps = 0;</span>
+    // Konstruktor a játékos nevének bekérésére
+    public void PlayerName() {
+<span class="nc" id="L24">        setPlayerName();</span>
+<span class="nc" id="L25">    }</span>
+    public void PlayerPosition(){
+<span class="nc" id="L27">        setPlayerPosition();</span>
+<span class="nc" id="L28">    }</span>
+    public static void PlayerDirection(char dir) {
+<span class="nc" id="L30">        setPlayerDirection(dir);</span>
+<span class="nc" id="L31">    }</span>
+    public static void PlayerPosX(int posX) {
+<span class="nc" id="L33">        setPlayerPosX(posX);</span>
+<span class="nc" id="L34">    }</span>
+    public static void PlayerPosY(int posY) {
+<span class="nc" id="L36">        setPlayerPosY(posY);</span>
+<span class="nc" id="L37">    }</span>
+    public static void  NumberOfArrows(int arrows) {
+<span class="nc" id="L39">        numberOfArrows = arrows;</span>
+<span class="nc" id="L40">    }</span>
+    public static void NumberOfGolds(int gold) {
+<span class="nc" id="L42">        setNumberOfGolds(gold);</span>
+<span class="nc" id="L43">    }</span>
+    public static void KilledWumpus(int wumpus) {
+<span class="nc" id="L45">        killedWumpus = wumpus;</span>
+<span class="nc" id="L46">    }</span>
+    public static void PlayerSteps(int step) {
+<span class="nc" id="L48">        setPlayerSteps(step);</span>
+<span class="nc" id="L49">    }</span>
+    // Metódus a játékos nevének beállítására
+    private void setPlayerName() {
+        // Név bekérése
+<span class="nc" id="L53">        Scanner kb = new Scanner(System.in);</span>
+<span class="nc" id="L54">        System.out.print(&quot;Kérem, adja meg a játékos nevét: &quot;);</span>
+<span class="nc" id="L55">        playerName = kb.nextLine();</span>
+        // Mentés adatbázisba
+<span class="nc" id="L57">        GameSaver saver = new GameSaver();</span>
+<span class="nc" id="L58">        saver.savePlayer(playerName);</span>
+<span class="nc" id="L59">    }</span>
+    private static void setPlayerDirection(char dir) {
+<span class="nc" id="L61">        direction = dir;</span>
+<span class="nc" id="L62">    }</span>
+    private static void setPlayerPosX(int posX){
+<span class="nc" id="L64">        playerPosX = posX;</span>
+
+<span class="nc" id="L66">    }</span>
+    private static void setPlayerPosY(int posY){
+<span class="nc" id="L68">        playerPosY = posY;</span>
+
+<span class="nc" id="L70">    }</span>
+    private static void setPlayerSteps(int step) {
+<span class="nc" id="L72">        playerSteps = step;</span>
+<span class="nc" id="L73">    }</span>
+    private void setPlayerPosition(){
+<span class="nc" id="L75">        Random random = new Random();</span>
+<span class="nc" id="L76">        int min = 1;</span>
+<span class="nc" id="L77">        int max = NewGameLoader.size - 2;</span>
+<span class="nc" id="L78">        int playerPositionX = random.nextInt(max - min) + min;</span>
+<span class="nc" id="L79">        int playerPositionY = random.nextInt(max - min) + min;</span>
+<span class="nc" id="L80">        this.playerPosX = playerPositionX;</span>
+<span class="nc" id="L81">        this.playerPosY = playerPositionY;</span>
+<span class="nc" id="L82">        playerInitPosX = playerPositionX;</span>
+<span class="nc" id="L83">        playerInitPosY = playerPositionY;</span>
+<span class="nc" id="L84">    }</span>
+    public void setNumberOfArrows() {
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (NewGameLoader.size &lt;= 8){</span>
+<span class="nc" id="L87">            this.numberOfArrows = 1;</span>
+<span class="nc bnc" id="L88" title="All 4 branches missed.">        } else if (</span>
+            NewGameLoader.size &gt; 8 &amp;&amp; NewGameLoader.size &lt;= 14){
+<span class="nc" id="L90">            this.numberOfArrows = 2;</span>
+        } else {
+<span class="nc" id="L92">            this.numberOfArrows = 3;</span>
+        }
+<span class="nc" id="L94">    }</span>
+    private static void setNumberOfGolds(int gold) {
+<span class="nc" id="L96">        numberOfGolds = gold;</span>
+<span class="nc" id="L97">    }</span>
+    // Metódusok a játékos nevének, pozíciójának és irányának lekérdezésére
+    public String getPlayerName() {
+<span class="nc" id="L100">        return playerName;</span>
+    }
+    public static int getPlayerPosX() {
+<span class="nc" id="L103">        return playerPosX;</span>
+    }
+    public static int getPlayerPosY() {
+<span class="nc" id="L106">        return playerPosY;</span>
+    }
+    public static int getPlayerInitPosX() {
+<span class="nc" id="L109">        return playerInitPosX;</span>
+    }
+    public static int getPlayerInitPosY() {
+<span class="nc" id="L112">        return playerInitPosY;</span>
+    }
+    public static char getPlayerDirection(){
+<span class="nc" id="L115">        return direction;</span>
+    }
+    public static int getNumberOfArrows() {
+<span class="nc" id="L118">        return numberOfArrows;</span>
+    }
+    public static int getNumberOfGolds() {
+<span class="nc" id="L121">        return numberOfGolds;</span>
+    }
+    public static int getKilledWumpus() {
+<span class="nc" id="L124">        return killedWumpus;</span>
+    }
+    public static int getPlayerSteps() {
+<span class="nc" id="L127">        return playerSteps;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

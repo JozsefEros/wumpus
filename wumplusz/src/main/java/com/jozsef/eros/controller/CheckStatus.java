@@ -13,7 +13,7 @@ public class CheckStatus {
         checkBlockagePosition();
         checkInitPosition();
     }
-    public static void checkInitPosition() {
+    private static void checkInitPosition() {
         if (Player.getPlayerPosX() == Player.getPlayerInitPosX() &&
         Player.getPlayerPosY() == Player.getPlayerInitPosY() &&
         Player.getNumberOfGolds() == 1) {
@@ -25,7 +25,7 @@ public class CheckStatus {
             NewGameLoader.setExit('Q');
         }
     }
-    public static void checkGoldPosition() {
+    private static void checkGoldPosition() {
         if (Player.getPlayerPosX() == Gold.getGoldPosX() &&
                 Player.getPlayerPosY() == Gold.getGoldPosY()) {
             Player.NumberOfGolds(Player.getNumberOfGolds() + 1);
@@ -35,7 +35,7 @@ public class CheckStatus {
             System.out.println("***************************************");
         }
     }
-    public static void checkWumpusPosition() {
+    private static void checkWumpusPosition() {
         if (
                 (Player.getPlayerPosX() == WumpusGenerator.getWumpus1X() &&
                         Player.getPlayerPosY() == WumpusGenerator.getWumpus1Y()) ||
@@ -50,7 +50,7 @@ public class CheckStatus {
             NewGameLoader.setExit('Q');
         }
     }
-    public static void checkBlockagePosition() {
+    private static void checkBlockagePosition() {
         if (GameBoardGenerator.getBoard()[Player.getPlayerPosX()][Player.getPlayerPosY()] == 'P') {
             System.out.println("***************************************");
             System.out.println("*   You have fallen into a pitfall!   *");

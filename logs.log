@@ -667,3 +667,9 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jozse/w
 18:46:14.724 [main] INFO  c.j.eros.controller.DataBaseManager - Highscores table created or already exists.
 18:46:14.726 [main] INFO  c.j.eros.controller.DataBaseManager - Players table created or already exists.
 18:46:14.727 [main] INFO  c.j.eros.controller.DataBaseManager - Game States table created or already exists.
+20:17:39.441 [main] INFO  c.j.eros.controller.DataBaseManager - Highscores table created or already exists.
+20:17:39.445 [main] INFO  c.j.eros.controller.DataBaseManager - Players table created or already exists.
+20:17:39.446 [main] INFO  c.j.eros.controller.DataBaseManager - Game States table created or already exists.
+20:39:26.596 [main] INFO  c.j.eros.controller.DataBaseManager - Highscores table created or already exists.
+20:39:26.598 [main] INFO  c.j.eros.controller.DataBaseManager - Players table created or already exists.
+20:39:26.598 [main] INFO  c.j.eros.controller.DataBaseManager - Game States table created or already exists.

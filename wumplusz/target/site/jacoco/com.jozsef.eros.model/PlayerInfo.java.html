@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="hu"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlayerInfo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">wumplusz</a> &gt; <a href="index.source.html" class="el_package">com.jozsef.eros.model</a> &gt; <span class="el_source">PlayerInfo.java</span></div><h1>PlayerInfo.java</h1><pre class="source lang-java linenums">package com.jozsef.eros.model;
+
+import java.util.Arrays;
+import com.jozsef.eros.NewGameLoader;
+import com.jozsef.eros.model.Player;
+
+<span class="nc" id="L7">public class PlayerInfo {</span>
+    private static int size;
+    private static char direction;
+    private static char posX;
+    private static int posY;
+    private static char initPosX;
+    private static int initPosY;
+    private static int steps;
+    private static int arrows;
+    private static int golds;
+    private static int wumpuses;
+
+    public static void setPlayerInfo() {
+<span class="nc" id="L20">        size = NewGameLoader.size;</span>
+<span class="nc" id="L21">        direction = Player.getPlayerDirection();</span>
+<span class="nc" id="L22">        posX = posXWithChar();</span>
+<span class="nc" id="L23">        posY = Player.getPlayerPosX() + 1;</span>
+<span class="nc" id="L24">        initPosX = initPosXWithChar();</span>
+<span class="nc" id="L25">        initPosY = Player.getPlayerInitPosX() + 1;</span>
+<span class="nc" id="L26">        steps = Player.getPlayerSteps();</span>
+<span class="nc" id="L27">        arrows = Player.getNumberOfArrows();</span>
+<span class="nc" id="L28">        golds = Player.getNumberOfGolds();</span>
+<span class="nc" id="L29">        wumpuses = Player.getKilledWumpus();</span>
+<span class="nc" id="L30">    }</span>
+    public void getPlayerInfo() {
+<span class="nc" id="L32">        System.out.println(&quot;Playerinfo: &quot; + size + ' ' + posX + ' ' + posY + ' ' + direction);</span>
+<span class="nc" id="L33">        System.out.println(&quot;Start position: &quot; + initPosX + ' ' + initPosY);</span>
+<span class="nc" id="L34">        System.out.println(&quot;Steps: &quot; + steps);</span>
+<span class="nc" id="L35">        System.out.println(&quot;Arrows: &quot; + arrows);</span>
+<span class="nc" id="L36">        System.out.println(&quot;Golds: &quot; + golds);</span>
+<span class="nc" id="L37">        System.out.println(&quot;Killed wumpuses:&quot; + wumpuses);</span>
+<span class="nc" id="L38">    }</span>
+    private static char posXWithChar () {
+<span class="nc" id="L40">        int auxArrayLenght = NewGameLoader.size;</span>
+<span class="nc" id="L41">        char[] auxArray = new char[auxArrayLenght];</span>
+<span class="nc" id="L42">        char currentChar = 'A';</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        for (int i = 0; i &lt; auxArrayLenght; i++) {</span>
+<span class="nc" id="L44">            auxArray[i] = currentChar;</span>
+<span class="nc" id="L45">            currentChar++;</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (currentChar &gt; 'Z') {</span>
+<span class="nc" id="L47">                break;</span>
+            }
+        }
+<span class="nc" id="L50">        return auxArray[Player.getPlayerPosY()];</span>
+    }
+    private static char initPosXWithChar () {
+<span class="nc" id="L53">        int auxArrayLenght = NewGameLoader.size;</span>
+<span class="nc" id="L54">        char[] auxArray = new char[auxArrayLenght];</span>
+<span class="nc" id="L55">        char currentChar = 'A';</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        for (int i = 0; i &lt; auxArrayLenght; i++) {</span>
+<span class="nc" id="L57">            auxArray[i] = currentChar;</span>
+<span class="nc" id="L58">            currentChar++;</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            if (currentChar &gt; 'Z') {</span>
+<span class="nc" id="L60">                break;</span>
+            }
+        }
+<span class="nc" id="L63">        return auxArray[Player.getPlayerInitPosY()];</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

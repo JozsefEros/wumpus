@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="hu"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameBoardGenerator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">wumplusz</a> &gt; <a href="index.source.html" class="el_package">com.jozsef.eros.view</a> &gt; <span class="el_source">GameBoardGenerator.java</span></div><h1>GameBoardGenerator.java</h1><pre class="source lang-java linenums">package com.jozsef.eros.view;
+
+import com.jozsef.eros.model.*;
+
+public class GameBoardGenerator {
+    private static char[][] room;
+
+<span class="nc" id="L8">    public GameBoardGenerator(int rows, int cols) {</span>
+<span class="nc" id="L9">        room = new char[rows][cols];</span>
+<span class="nc" id="L10">    }</span>
+
+    public void GameBoardDisplay() {
+<span class="nc" id="L13">        fillBoard();</span>
+<span class="nc" id="L14">        printBoard();</span>
+<span class="nc" id="L15">    }</span>
+    public static void fillBoard() {
+<span class="nc" id="L17">        int numRows = room.length;</span>
+<span class="nc" id="L18">        int numCols = room[0].length;</span>
+
+        /** A játéktér falainak elhelyezése
+         * Feltöltés az első sorban és az utolsó sorban
+         */
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        for (int col = 0; col &lt; numCols; col++) {</span>
+<span class="nc" id="L24">            room[0][col] = 'W';</span>
+<span class="nc" id="L25">            room[numRows - 1][col] = 'W';</span>
+        }
+
+        /** Feltöltés az első oszlopban és az utolsó oszlopban */
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        for (int row = 0; row &lt; numRows; row++) {</span>
+<span class="nc" id="L30">            room[row][0] = 'W';</span>
+<span class="nc" id="L31">            room[row][numCols - 1] = 'W';</span>
+        }
+
+        /** Játékos és az arany elhelyezése a pályán */
+<span class="nc" id="L35">        room[Player.getPlayerPosX()][Player.getPlayerPosY()] = 'H';</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        if (Player.getNumberOfGolds() &lt; 1) {</span>
+<span class="nc" id="L37">            room[Gold.getGoldPosX()][Gold.getGoldPosY()] = 'G';</span>
+        }
+        /** Wumpusok elhelyezése a pályán */
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (numRows &lt;= 8) {</span>
+<span class="nc" id="L41">            room[WumpusGenerator.getWumpus1X()][WumpusGenerator.getWumpus1Y()] = 'U';</span>
+<span class="nc bnc" id="L42" title="All 4 branches missed.">        } else if (numRows &gt; 8 &amp;&amp; numRows &lt;= 14) {</span>
+<span class="nc" id="L43">            room[WumpusGenerator.getWumpus1X()][WumpusGenerator.getWumpus1Y()] = 'U';</span>
+<span class="nc" id="L44">            room[WumpusGenerator.getWumpus2X()][WumpusGenerator.getWumpus2Y()] = 'U';</span>
+        } else {
+<span class="nc" id="L46">            room[WumpusGenerator.getWumpus1X()][WumpusGenerator.getWumpus1Y()] = 'U';</span>
+<span class="nc" id="L47">            room[WumpusGenerator.getWumpus2X()][WumpusGenerator.getWumpus2Y()] = 'U';</span>
+<span class="nc" id="L48">            room[WumpusGenerator.getWumpus3X()][WumpusGenerator.getWumpus3Y()] = 'U';</span>
+        }
+        /** Belső falak elhelyezése */
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        for (int i = 0; i &lt; room.length; i++)</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            for (int j = 0; j &lt; room.length; j++) {</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">                if (room[i][j] == '\u0000') {</span>
+<span class="nc" id="L54">                    room[i][j] = InnerWallGenerator.getWall()[i][j];</span>
+                }
+            }
+<span class="nc" id="L57">    }</span>
+    public void printBoard() {
+        /** Kiírás az oszlopok felett az oszlopok neve betűkkel */
+<span class="nc" id="L60">        System.out.print(&quot;     &quot;);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        for (int col = 0; col &lt; room[0].length; col++) {</span>
+<span class="nc" id="L62">            char columnName = (char) ('A' + col);</span>
+<span class="nc" id="L63">            System.out.print(columnName + &quot; | &quot;);</span>
+        }
+<span class="nc" id="L65">        System.out.println();</span>
+<span class="nc" id="L66">        System.out.print(&quot;   &quot;);</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        for (int col = 0; col &lt; room[0].length; col++) {</span>
+<span class="nc" id="L68">            System.out.print(&quot;----&quot;);</span>
+        }
+<span class="nc" id="L70">        System.out.print(&quot;-&quot;);</span>
+<span class="nc" id="L71">        System.out.println();</span>
+
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        for (int row = 0; row &lt; room.length; row++) {</span>
+            /** Kiírás az első oszlopban a sorok megszámozásával */
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (row &lt; 9) {</span>
+<span class="nc" id="L76">                System.out.print(&quot; &quot; + (row + 1) + &quot; | &quot;);</span>
+            } else {
+<span class="nc" id="L78">                System.out.print((row + 1) + &quot; | &quot;);</span>
+            }
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            for (int col = 0; col &lt; room[0].length; col++) {</span>
+<span class="nc" id="L81">                char c = room[row][col];</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">                if (c != 0) {</span>
+<span class="nc" id="L83">                    System.out.print(c + &quot; | &quot;);</span>
+                } else {
+<span class="nc" id="L85">                    System.out.print(&quot;  | &quot;); /** Üres mező */</span>
+                }
+            }
+<span class="nc" id="L88">            System.out.println();</span>
+<span class="nc" id="L89">            System.out.print(&quot;---&quot;);</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            for (int col = 0; col &lt; room[0].length; col++) {</span>
+<span class="nc" id="L91">                System.out.print(&quot;|---&quot;);</span>
+            }
+<span class="nc" id="L93">            System.out.print(&quot;|&quot;);</span>
+<span class="nc" id="L94">            System.out.println();</span>
+        }
+<span class="nc" id="L96">    }</span>
+
+    public static char[][] getBoard() {
+<span class="nc" id="L99">        return room;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
